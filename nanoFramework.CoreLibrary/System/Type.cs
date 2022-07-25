@@ -251,6 +251,46 @@ namespace System
         public abstract FieldInfo[] GetFields(BindingFlags bindingAttr);
 
         /// <summary>
+        /// Searches for the specified property, using the specified binding constraints.
+        /// </summary>
+        /// <param name="name">The string containing the name of the data property to get.</param>
+        /// <param name="bindingAttr">A bitmask comprised of one or more BindingFlags that specify how the search is conducted or Zero, to return null.</param>
+        /// <returns>An object representing the property that matches the specified requirements, if found; otherwise, null.</returns>
+        public abstract PropertyInfo GetProperty(String name, BindingFlags bindingAttr);
+
+        /// <summary>
+        /// Searches for the public property with the specified name.
+        /// </summary>
+        /// <param name="name">The string containing the name of the data property to get.</param>
+        /// <returns>An object representing the public property with the specified name, if found; otherwise, null.</returns>
+        public PropertyInfo GetProperty(String name)
+        {
+            return GetProperty(name, DefaultLookup);
+        }
+
+        /// <summary>
+        /// Returns all the public properties of the current Type.
+        /// </summary>
+        /// <returns>An array of PropertyInfo objects representing all the public properties defined for the current Type.
+        /// <para>-or-</para>
+        /// <para>An empty array of type PropertyInfo, if no public properties are defined for the current Type.</para>
+        /// </returns>
+        public PropertyInfo[] GetProperties()
+        {
+            return GetProperties(DefaultLookup);
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, searches for the properties defined for the current Type, using the specified binding constraints.
+        /// </summary>
+        /// <param name="bindingAttr">A bitmask comprised of one or more BindingFlags that specify how the search is conducted or Zero, to return null.</param>
+        /// <returns>An array of PropertyInfo objects representing all the public properties defined for the current Type.
+        /// <para>-or-</para>
+        /// <para>An empty array of type PropertyInfo, if no public properties are defined for the current Type.</para>
+        /// </returns>
+        public abstract PropertyInfo[] GetProperties(BindingFlags bindingAttr);
+
+        /// <summary>
         /// When overridden in a derived class, gets all the interfaces implemented or inherited by the current Type.
         /// </summary>
         /// <returns>An array of Type objects representing all the interfaces implemented or inherited by the current Type.

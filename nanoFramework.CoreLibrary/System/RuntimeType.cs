@@ -64,6 +64,12 @@ namespace System
         [MethodImpl(MethodImplOptions.InternalCall)]
         public override extern FieldInfo[] GetFields(BindingFlags bindingAttr);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public override extern PropertyInfo GetProperty(String name, BindingFlags bindingAttr);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public override extern PropertyInfo[] GetProperties(BindingFlags bindingAttr);
+
         /// <summary>
         /// This method will return all of the interfaces implemented by a class
         /// </summary>

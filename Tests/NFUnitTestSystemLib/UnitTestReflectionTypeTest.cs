@@ -82,6 +82,14 @@ namespace NFUnitTestSystemLib
             Assert.NotNull(t.GetField("m_Field2", BindingFlags.NonPublic | BindingFlags.Instance));
             Assert.NotNull(t.GetConstructor(new Type[] { }));
 
+            PropertyInfo[] pis = t.GetProperties();
+            Assert.Equal(fis[0].Name, "m_Property1");
+            pis = t.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.Equal(fis[0].Name, "m_Property2");
+            Assert.NotNull(t.GetProperty("m_Property1"));
+            Assert.NotNull(t.GetProperty("m_Property2", BindingFlags.NonPublic | BindingFlags.Instance));
+            Assert.NotNull(t.GetConstructor(new Type[] { }));
+
             Type[] ifaces = t.GetInterfaces();
             Assert.Equal(ifaces.Length, 2);
             Assert.Equal(ifaces[0].Name, "IInterface1");
@@ -194,6 +202,9 @@ namespace NFUnitTestSystemLib
         {
             public int m_Field1;
             private float m_Field2;
+
+            public int m_Property1 { get; set; }
+            private float m_Property2 { get; set; }
 
             public int Method1(bool b)
             {
